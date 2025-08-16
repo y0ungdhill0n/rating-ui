@@ -33,9 +33,7 @@ const Rating = () => {
 			{rating > 0 && <p className='feedback'>{feedbackMessages[rating - 1]}</p>}
 
 			<div>
-				<p>
-					<Footer />
-				</p>
+				<Footer />
 			</div>
 		</div>
 	);

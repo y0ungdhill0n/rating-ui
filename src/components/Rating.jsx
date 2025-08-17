@@ -1,40 +1,67 @@
 import { useState } from 'react';
 import Footer from './Footer';
+import Star from './Star';
+import Modal from './Modal';
 
-const Rating = () => {
-	const [rating, setRating] = useState(0);
-	const [hover, setHover] = useState(0);
-
-	const stars = Array.from({ length: 5 }, (_, i) => i + 1);
-	const feedbackMessages = [
+const Rating = ({
+	heading = 'Rate Your Experience',
+	color = 'black',
+	feedbackMessages = [
 		'Terrible 😩',
 		'Poor 😞',
 		'Fair 😑',
 		'Good 👍',
 		'Excellent 👌',
-	];
+	],
+}) => {
+	const [rating, setRating] = useState(0);
+	const [hover, setHover] = useState(0);
+	const [submitted, setSubmitted] = useState(false);
+	const handleSubmit = () => {
+		if (rating > 0) {
+			setSubmitted(true);
+		}
+	};
+	const closeModal = () => {
+		setSubmitted(false);
+		setRating(0);
+		setHover(0);
+	};
+	const stars = Array.from({ length: 5 }, (_, i) => i + 1);
 
 	return (
 		<div className='rating-container'>
 			<img id='rating-scale-img' src='rating-scale.avif' alt='rate' />
-			<h2>Rate Your Experience </h2>
+			<h2>{heading}</h2>
 			<div className='stars'>
 				{stars.map((star) => (
-					<span
-						onClick={() => setRating(star)}
-						onMouseEnter={() => setHover(star)}
-						onMouseLeave={() => setHover(0)}
+					<Star
 						key={star}
-						className={`star ${star <= (hover || rating) ? 'active' : ''}`}>
-						{'\u2605'}
-					</span>
+						star={star}
+						rating={rating}
+						hover={hover}
+						color={color}
+						ratingClick={setRating}
+						hoverEnter={setHover}
+						hoverLeave={() => setHover(null)}
+					/>
 				))}
 			</div>
 			{rating > 0 && <p className='feedback'>{feedbackMessages[rating - 1]}</p>}
 
-			<div>
+			<button
+				className='submit-btn'
+				onClick={handleSubmit}
+				disabled={rating === 0}>
+				Submit Feedback
+			</button>
+
+			<Modal isOpen={submitted} onClose={closeModal} rating={rating} />
+
+			{/* Footer */}
+			<span>
 				<Footer />
-			</div>
+			</span>
 		</div>
 	);
 };

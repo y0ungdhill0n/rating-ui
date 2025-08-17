@@ -48,14 +48,82 @@ body {
 }
 
 #rating-scale-img {
-  width: 200px;
-  
+  width: 150px;
+
 }
 
 .footer {
-  font-weight:bold;
-  margin-top: 2rem;
-  font-size:small;
-  box-shadow: 14px 14px 14px #0080ff
-  
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  border:8px solid white;
+  opacity: 1;
+  box-shadow: 10px 12px 16px #0080ff;
+  border-radius: 10px;
+}
+
+/* Submit Button */
+.submit-btn {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  background-color: #0080ff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background #ccc 0.2s ease-in-out;
+  border-radius: 5px;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background-image: linear-gradient(90deg, #0080ff 0%, #00ffd0 100%);
+}
+
+.submit-btn:disabled {
+  background-color: gray;
+  cursor: not-allowed
+}
+
+/* Modal Styling */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  width: 300px;
+}
+
+.modal h2 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.close-btn {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+  border-radius: 5px;
+
+}
+
+.close-btn:hover {
+  background-color: darkred;
 }
